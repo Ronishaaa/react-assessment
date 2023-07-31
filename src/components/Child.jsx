@@ -1,10 +1,12 @@
-const Child = () => {
+
+const Child = (props) => {
+  
   const handleMinusClick = () => {
-    /* Implement logic here */
+    props.onChange(props.num-1);
   };
 
   const handlePlusClick = () => {
-    /* Implement logic here */
+    props.onChange(props.num+1);
   };
 
   return (
@@ -20,3 +22,4 @@ const Child = () => {
 };
 
 export default Child;
+
