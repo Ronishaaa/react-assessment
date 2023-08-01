@@ -9,3 +9,12 @@
 .removeButton:active {
   @apply drop-shadow-md opacity-75;
 }
+.checkedItem {
+  text-decoration: none;
+}
+
+.checkedText {
+  text-decoration: line-through;
+}
+
+
