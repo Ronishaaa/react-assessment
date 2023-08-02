@@ -11,8 +11,8 @@ function App() {
   };
 
   const handleAddItem = () => {
-    if (newItem !== "" && !items.includes(newItem)) {
-      setItems((oldItems) => [newItem, ...oldItems]);
+    if (newItem !== "" && !items.find((arrItem) => arrItem.item === newItem)) {
+      setItems((oldItems) => [{ item: newItem, check: false }, ...oldItems]);
       setNewItem("");
     } else {
       window.alert("Cannot add the given element.");
@@ -21,6 +21,18 @@ function App() {
 
   const deleteItem = (index) => {
     setItems((oldItems) => oldItems.filter((item, i) => i !== index));
+  };
+
+  const handleToggleChecked = (id) => {
+    setItems(
+      items.map((item, idx) => {
+        if (id === idx) {
+          return { ...item, check: !item.check };
+        } else {
+          return item;
+        }
+      })
+    );
   };
 
   return (
@@ -43,11 +55,14 @@ function App() {
         {items.map((item, index) => (
           <ShoppingListItem
             key={index}
+            index={index}
             item={item}
             deleteItem={() => deleteItem(index)}
+            handleToggleChecked={handleToggleChecked}
           />
         ))}
       </div>
+      <div>{items.filter((i) => i.check).length}</div>
     </div>
   );
 }
